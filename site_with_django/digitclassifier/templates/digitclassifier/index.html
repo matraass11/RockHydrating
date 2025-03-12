@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <!-- <script src=https://cdnjs.cloudflare.com/ajax/libs/mathjs/3.3.0/math.min.js></script> -->
+    <script defer src={% static "digitclassifier/index.js" %}></script> 
+    <link rel="stylesheet" href={% static "digitclassifier/style.css" %}>
+    <link rel="icon" type="image/x-icon" href={% static "digitclassifier/favicon.ico" %}>
+</head>
+<body>
+    <section class="container">
+        <div id="draw">
+            <canvas width="28" height="28" id="canvas"></canvas>
+        </div>
+        <div id="menu">
+            <form action="pred" method="POST">{% csrf_token %}
+                <input id="hiddenData" name="hiddenData" value={{hiddenData}}>
+                <input type="submit">
+            </form>
+            <button id="clear">clear</button>
+            <h1>{{prediction}}</h1>
+            <div id="boo"></div>
+             <!-- {% block prediction %}{% endblock %} -->
+        </div>
+    </section>
+</body>
+</html>
