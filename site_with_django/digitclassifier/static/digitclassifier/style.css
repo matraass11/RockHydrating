@@ -2,17 +2,25 @@ section {
     display: flex;
     justify-content: space-evenly;
     height: 100%;
+    font-family: monospace;
+}
+
+* {
+    font-family: monospace;
+    font-size: 110%;
 }
 
 #menu {
     display: flex;
     flex-direction: column;
     width: 20%;
+    justify-content: space-around;
 }
 
-button {
+.butt {
     width: 80%;
     height: 50px;
+    font-family: monospace;
 }
 
 #draw {

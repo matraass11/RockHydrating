@@ -16,11 +16,10 @@
         <div id="menu">
             <form action="pred" method="POST">{% csrf_token %}
                 <input id="hiddenData" name="hiddenData" value={{hiddenData}}>
-                <input type="submit">
+                <input type="submit" class="butt">
             </form>
-            <button id="clear">clear</button>
             <h1>{{prediction}}</h1>
-            <div id="boo"></div>
+            <button id="clear" class="butt">clear</button>
              <!-- {% block prediction %}{% endblock %} -->
         </div>
     </section>
