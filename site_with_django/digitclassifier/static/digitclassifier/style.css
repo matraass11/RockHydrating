@@ -2,6 +2,7 @@
     --mainBgColor: #141921;
     /* --secBgColor: #382d47; */
     --secBgColor: #451134;
+    --secBgColorDarker: #400f30;
 }
 
 html, body {
@@ -15,7 +16,7 @@ html, body {
 }
 
 * {
-    font-family: monospace;
+    font-family: monospace, monospace;
     font-size: 110%;
     color: white;
 }
@@ -41,7 +42,11 @@ html, body {
 }
 
 .butt:hover {
-    background-color: ;
+    background-color: var(--secBgColorDarker);
+}
+
+.butt:active{
+    background-color: var(--secBgColor);
 }
 
 #draw {
