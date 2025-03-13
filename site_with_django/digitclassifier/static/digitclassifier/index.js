@@ -12,12 +12,14 @@ const yScalingFactor = canvas.height/drawdiv.offsetHeight;
 
 let isPainting = false;
 ctx.lineWidth = 1;
+ctx.strokeStyle = 'white';
+ctx.fillStyle = 'white';
 let imageStatesStack = [ctx.getImageData(0, 0, canvas.width, canvas.height)];
 
-// let imgData = ctx.createImageData(canvas.width, canvas.height);
-// let arr = new Uint8ClampedArray(hiddenData.value.split(","));
-// imgData.data.set(arr);
-// ctx.putImageData(imgData, 0, 0);
+let imgData = ctx.createImageData(canvas.width, canvas.height);
+let arr = new Uint8ClampedArray(hiddenData.value.split(","));
+imgData.data.set(arr);
+ctx.putImageData(imgData, 0, 0);
 // loads the picture drawn previously after showing the prediction, otherwise changes nothing
 
 const getCoordinates = (e) => {

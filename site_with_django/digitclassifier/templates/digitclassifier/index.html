@@ -9,19 +9,17 @@
     <link rel="icon" type="image/x-icon" href={% static "digitclassifier/favicon.ico" %}>
 </head>
 <body>
-    <section class="container">
-        <div id="draw">
-            <canvas width="28" height="28" id="canvas"></canvas>
-        </div>
-        <div id="menu">
-            <form action="pred" method="POST">{% csrf_token %}
-                <input id="hiddenData" name="hiddenData" value={{hiddenData}}>
-                <input type="submit" class="butt">
-            </form>
-            <h1>{{prediction}}</h1>
-            <button id="clear" class="butt">clear</button>
-             <!-- {% block prediction %}{% endblock %} -->
-        </div>
-    </section>
+    <div id="draw">
+        <canvas width="28" height="28" id="canvas"></canvas>
+    </div>
+    <div id="menu">
+        <form action="pred" method="POST">{% csrf_token %}
+            <input id="hiddenData" name="hiddenData" value={{hiddenData}}>
+            <input type="submit" class="butt" value="predict">
+        </form>
+        <h1 id="pred">{{prediction}}</h1>
+        <button id="clear" class="butt">clear</button>
+            <!-- {% block prediction %}{% endblock %} -->
+    </div>
 </body>
 </html>
