@@ -43,4 +43,4 @@ def predict(data):
     data = data.to(device)
     predictions = F.softmax(model(data), dim=1).argmax(dim=1).item()
     probs = [f'{x:.3f}' for x in F.softmax(model(data), dim=1).tolist()[0]]
-    return predictions
+    return [predictions, probs]
