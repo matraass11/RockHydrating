@@ -13,11 +13,15 @@
         <canvas width="28" height="28" id="canvas"></canvas>
     </div>
     <div id="menu">
-        <form action="pred" method="POST">{% csrf_token %}
-            <input id="hiddenData" name="hiddenData" value={{hiddenData}}>
-            <input type="submit" class="butt" value="predict">
-        </form>
-        <h1 id="pred">{{prediction}}</h1>
+        <div id="upper">
+            <form action="pred" method="POST">{% csrf_token %}
+                <input id="hiddenData" name="hiddenData" value={{hiddenData}}>
+                <input type="submit" class="butt" value="predict" id="predict">
+            </form>
+            <div id="columnGap"></div>
+            <button class="butt" id="probsToggle"></button>
+        </div>
+        <h1 id="prediction">{{prediction}}</h1>
         <button id="clear" class="butt">clear</button>
             <!-- {% block prediction %}{% endblock %} -->
     </div>

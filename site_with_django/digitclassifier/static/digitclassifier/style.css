@@ -1,8 +1,9 @@
 :root {
     --mainBgColor: #141921;
-    /* --secBgColor: #382d47; */
+
     --secBgColor: #451134;
-    --secBgColorDarker: #400f30;
+    --secBgColorLighter: #501237;
+
 }
 
 html, body {
@@ -29,25 +30,53 @@ html, body {
     justify-content: space-between;
 }
 
-#pred {
-    height: 50px;
-}
-
 .butt {
-    width: 80%;
-    height: 50px;
+    height: 65px;
     font-family: monospace;
     background-color: var(--secBgColor);
     border: 0.1px solid;
 }
 
-.butt:hover {
-    background-color: var(--secBgColorDarker);
+#upper {
+    display: grid;
+    grid-template-columns: 75% 3% 22%;
+    align-items: center;
 }
 
-.butt:active{
+#upper *{
+    width: 100%;
+}
+
+.butt#probsToggle {
+    height: 80%;
+    /* background: no-repeat center url('scales.png'); */
+    background-repeat: no-repeat;
+    background-position: center;
+    background-image: url(scales.png);
+    background-blend-mode: lighten;
+    /* background-color: var(--secBgColor); */
+    background-size: 70%;
+}
+
+#clear {
+    width: 100%;
+}
+
+.butt:hover {
+    background-color: var(--secBgColorLighter);
+}
+
+.butt:active {
     background-color: var(--secBgColor);
 }
+
+#prediction {
+    height: 200px;
+    border: 0.1px solid;
+}
+
+
+
 
 #draw {
     height: fit-content;
