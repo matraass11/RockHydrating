@@ -4,13 +4,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {% load static %}
     <!-- <script src=https://cdnjs.cloudflare.com/ajax/libs/mathjs/3.3.0/math.min.js></script> -->
-    <script defer src={% static "digitclassifier/index.js" %}></script> 
+    <script defer src={% static "digitclassifier/draw.js" %}></script> 
+    <script defer src={% static "digitclassifier/menu.js" %}></script> 
     <link rel="stylesheet" href={% static "digitclassifier/style.css" %}>
     <link rel="icon" type="image/x-icon" href={% static "digitclassifier/favicon.ico" %}>
 </head>
 <body>
     <div id="draw">
-        <canvas width="28" height="28" id="canvas"></canvas>
+        <canvas width="28" height="28" id="drawCanvas"></canvas>
     </div>
     <div id="menu">
         <div id="upper">
@@ -21,9 +22,13 @@
             <div id="columnGap"></div>
             <button class="butt" id="probsToggle"></button>
         </div>
-        <h1 id="prediction">{{prediction}}</h1>
+        <div id="outputs">
+            <h1 id="prediction">{{prediction}}</h1>
+            <div id="probs" style="display: none">
+                <canvas width="54" height="35" id="probsCanvas" class="probsCanvas"></canvas>
+            </div>
+        </div>
         <button id="clear" class="butt">clear</button>
-            <!-- {% block prediction %}{% endblock %} -->
     </div>
 </body>
 </html>
