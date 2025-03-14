@@ -16,5 +16,6 @@ def display_prediction(request):
     mean, std = 0.1307, 0.3081
     standartized_data = (minmaxed_data - mean)/std
 
-    prediction = predict(standartized_data)
-    return render(request, "digitclassifier/index.html", {"prediction": prediction, "hiddenData": hiddenData})
+    prediction, probs = predict(standartized_data)
+    prediction = f"i think it's a {prediction}"
+    return render(request, "digitclassifier/index.html", {"prediction": prediction, "probs": probs, "hiddenData": hiddenData})
