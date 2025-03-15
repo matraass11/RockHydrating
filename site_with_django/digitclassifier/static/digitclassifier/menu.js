@@ -13,4 +13,3 @@ const changeDisplay = () => {
 probsToggle.addEventListener('click', () => {
     changeDisplay();
 });
-
