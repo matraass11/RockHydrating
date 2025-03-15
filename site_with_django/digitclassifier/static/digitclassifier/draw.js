@@ -1,7 +1,6 @@
 const drawMain = () => {
     
     const canvas = document.getElementById("drawCanvas");
-    const menu = document.getElementById("menu");
     const clearButton = document.getElementById("clear");
     const ctx = canvas.getContext("2d", {willReadFrequently: true});
     const drawdiv = document.getElementById("draw");
@@ -15,15 +14,8 @@ const drawMain = () => {
     let isPainting = false;
     ctx.lineWidth = 1;
     ctx.strokeStyle = 'white';
-    ctx.fillStyle = 'white';
     let imageStatesStack = [ctx.getImageData(0, 0, canvas.width, canvas.height)];
-    
-    let imgData = ctx.createImageData(canvas.width, canvas.height);
-    let arr = new Uint8ClampedArray(hiddenData.value.split(","));
-    imgData.data.set(arr);
-    ctx.putImageData(imgData, 0, 0);
-    // loads the picture drawn previously after showing the prediction, otherwise changes nothing
-    
+
     const getCoordinates = (e) => {
         return [(e.pageX - canvasOffsetX)*xScalingFactor, (e.pageY-canvasOffsetY)*yScalingFactor];
     }
@@ -50,7 +42,6 @@ const drawMain = () => {
     const saveData = () => {
         hiddenData.value = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
     }
-    saveData();
     
     clearButton.addEventListener('click', () => {
         let stackEmptied = undraw();
@@ -59,11 +50,14 @@ const drawMain = () => {
         }
     });
     
-    document.addEventListener('mousedown', (e) => {
+    canvas.addEventListener('mousedown', (e) => {
         isPainting = true;
     });
     
     document.addEventListener('mouseup', (e) => {
+        if (!isPainting){
+            return;
+        }
         isPainting = false;
         ctx.stroke();
         ctx.beginPath();
@@ -72,7 +66,6 @@ const drawMain = () => {
     });
     
     document.addEventListener('mousemove', (e) => {
-        hiddenData.value = getCoordinates(e);
         let [x, y] = getCoordinates(e);
         if (x > canvas.width || x < 0 || y > canvas.height || y < 0){
             ctx.beginPath();
@@ -86,6 +79,8 @@ const drawMain = () => {
             undraw();
         } 
     });   
+
+    saveData();
 }
 
 drawMain();

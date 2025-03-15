@@ -21,10 +21,9 @@ def display_prediction(request):
     standartized_data = (minmaxed_data - mean)/std
 
     prediction, probs = predict(standartized_data)
-    prediction = f"i think it's a {prediction}"
+    prediction = f"i think it's {prediction}"
     probs = [f"{i}: {probs[i]} " if i%2 == 0 else f"{i}: {probs[i]}\n" for i in range(len(probs))]
-
     probs = ''.join(probs)
     response = {'prediction': prediction, 'probs': probs}
-    print(JsonResponse(response))
+
     return JsonResponse(response)
