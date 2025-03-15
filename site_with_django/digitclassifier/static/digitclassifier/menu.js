@@ -9,6 +9,10 @@ const changeDisplay = () => {
         probs.style.display = 'none';
     }
 }
+
+fetch('digitclassifier/display_prediction')
+
 probsToggle.addEventListener('click', () => {
     changeDisplay();
 });
+
