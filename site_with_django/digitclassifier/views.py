@@ -7,7 +7,7 @@ def none(request):
     return render(request, "digitclassifier/index.html", {"prediction": ''})
 
 def display_prediction(request):
-    hiddenData = request.POST.get('hiddenData'), request.POST.get('')
+    hiddenData = request.POST.get('hiddenData')
     imgData = hiddenData.split(",")
     luminance = [float(imgData[i]) for i in range(3, len(imgData), 4)]
     data = torch.tensor(luminance).view(1, 1, 28, 28) # Batch x Color Channels x W x H
