@@ -25,5 +25,6 @@ def predictAPI(request):
     probs = [f"{i}: {probs[i]} " if i%2 == 0 else f"{i}: {probs[i]}\n" for i in range(len(probs))]
     probs = ''.join(probs)
     response = {'prediction': prediction, 'probs': probs}
+    print('boo')
 
     return JsonResponse(response)

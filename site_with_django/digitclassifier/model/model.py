@@ -92,4 +92,4 @@ for epoch in range(epochs):
 
 save = True
 if save:
-    torch.save(model.state_dict(), 'digitclassifier/model/modelSaved')
+    torch.save(model.state_dict(), 'digitclassifier/model/modelSaved') 
