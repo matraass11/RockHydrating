@@ -5,6 +5,7 @@ import torch.nn.functional as F
 import torch.nn as nn
 from torch.utils.data import DataLoader
 
+
 class Net(nn.Module):
 
     def __init__(self):
@@ -38,10 +39,9 @@ class Net(nn.Module):
 train = torchvision.datasets.MNIST('digitclassifier/model', train=True)
 test = torchvision.datasets.MNIST('digitclassifier/model', train=False)
 
-# train.transform = transforms.ToTensor()
-# minmaxed_train = torch.cat(tuple(train[k][0] for k in range(len(train)))) # transform only applies at __getitem()__, cumbersome stat calc
-# mean, std = minmaxed_train.mean(), minmaxed_train.std()
-mean, std = 0.1307, 0.3081 # calculated above
+train.transform = transforms.ToTensor()
+minmaxed_train = torch.cat(tuple(train[k][0] for k in range(len(train)))) # transform only applies at __getitem()__, cumbersome stat calc
+mean, std = minmaxed_train.mean(), minmaxed_train.std()
 
 transform = transforms.Compose([
     transforms.ToTensor(),
@@ -79,17 +79,23 @@ def test(model, test_loader, device, epoch):
     loss /= len(test_loader.dataset) # average loss over each example
     print(f'epoch {epoch}: average test loss: {loss:.3f}, accuracy: {correct/len(test_loader.dataset):.2f}, correct: {correct}/{len(test_loader.dataset)}')
 
+if torch.cuda.is_available():
+    device = torch.device('cuda')
+elif torch.backends.mps.is_available():
+    device = torch.device('mps')
+else:
+    device = torch.device('cpu')
+    
+if __name__ == '__main__':
+    model = Net().to(device)
+    epochs = 10
+    optimiser = torch.optim.Adam(model.parameters(), lr=0.001, weight_decay=0.001)
 
-device = torch.device('mps')
-model = Net().to(device)
-epochs = 10
-optimiser = torch.optim.Adam(model.parameters(), lr=0.001, weight_decay=0.0001)
-
-for epoch in range(epochs):
-    train(model, train_loader, device, optimiser)
-    test(model, test_loader, device, epoch)
+    for epoch in range(epochs):
+        train(model, train_loader, device, optimiser)
+        test(model, test_loader, device, epoch)
 
 
-save = True
-if save:
-    torch.save(model.state_dict(), 'digitclassifier/model/modelSaved') 
+    save = True
+    if save:
+        torch.save(model.state_dict(), 'digitclassifier/model/modelSaved') 
