@@ -1,6 +1,7 @@
 const probsToggle = document.getElementById('probsToggle');
 const probs = document.getElementById('probs');
 const prediction = document.getElementById('prediction');
+const predict = document.getElementById('predict');
 const hiddenData = document.getElementById('hiddenData');
 
 const changeDisplay = () => {
@@ -28,30 +29,12 @@ async function sendDataToAPI() {
     probs.innerText = json['probs'];
 } 
 
+predict.addEventListener('click', sendDataToAPI);
+probsToggle.addEventListener('click', changeDisplay);
 
-
-document.getElementById('predict').addEventListener('click', sendDataToAPI);
-
-probsToggle.addEventListener('click', () => {
-    changeDisplay();
-});
-
-
-
-
-
-
+// copypasted from stackoverflow
 function getCookie(name) {
-    var cookieValue = null;
-    if (document.cookie && document.cookie !== '') {
-        var cookies = document.cookie.split(';');
-        for (var i = 0; i < cookies.length; i++) {
-            var cookie = cookies[i].trim();
-            if (cookie.substring(0, name.length + 1) === (name + '=')) {
-                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                break;
-            }
-        }
-    }
-    return cookieValue;
-}
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return parts.pop().split(';').shift();
+  }
