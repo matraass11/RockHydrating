@@ -4,10 +4,10 @@ from digitclassifier.model.infer import predict
 import json
 import torch 
 
-def none(request):
-    return render(request, "digitclassifier/index.html", {"prediction": ''})
+def default(request):
+    return render(request, "digitclassifier/index.html")
 
-def display_prediction(request):
+def predictAPI(request):
     requestBodyUnicode = request.body.decode('utf-8')
     requestBodyJson = json.loads(requestBodyUnicode)
     hiddenData = requestBodyJson['hiddenData']

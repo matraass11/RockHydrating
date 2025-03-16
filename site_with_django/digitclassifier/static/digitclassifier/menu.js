@@ -15,7 +15,7 @@ const changeDisplay = () => {
 
 let csrftoken = getCookie('csrftoken');
 async function sendDataToAPI() {
-    const response = await fetch('http://127.0.0.1:8000/pred', {
+    const response = await fetch('http://127.0.0.1:8000/predictAPI', {
         method: 'POST',
         body: JSON.stringify({'hiddenData': hiddenData.value}),
         headers: {
